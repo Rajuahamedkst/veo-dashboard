@@ -1,42 +1,1216 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* globals.css */
+/* 1. Base Styles */
+        .loader-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+        }
+        .css-loader {
+          width: 50px;
+          height: 50px;
+          border: 5px solid rgba(0, 0, 0, 0.1);
+          border-radius: 50%;
+          border-top-color: #3498db;
+          animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+.pure-black-bg {
+  background-color: #000;
+  min-height: 100vh;
+  color: white;
+  margin: 0;
+  position: relative;
+  padding-bottom: 100px; /* Add space for footer */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Regular footer styles */
+.footer-content {
+  border: 1px solid rgba(211, 211, 211, 0.226);
+  margin-top: 3rem;
+  border-radius: 20px;
+  padding: 2rem;
+  width: 100%;
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+/* Dashboard-specific adjustments */
+.dashboard-layout .pure-black-bg {
+  padding-left: 250px; /* Account for sidebar */
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
+.dashboard-layout .footer-content {
+  width: calc(100% - 250px);
+  margin-left: 250px;
   box-sizing: border-box;
-  padding: 0;
+}
+
+/* Make sure footer stays at bottom */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+/* 2. Header Styles - Fixed Issues */
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1rem 0;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.header-left, .header-right {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+.leftHomeTxt{
+  font-size: 3rem;
+  font-weight: 700;
+}
+.leftHomeTxt span{
+  background: linear-gradient(45deg, #e68843, #c0490c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.homeGrid{
+  display: grid;
+  grid-template-columns: repeat(2, 2fr);
+  gap: 1rem;
+}
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding: 16px;
+}
+
+.video-item {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  aspect-ratio: 16/9;
+  background: #000;
+}
+
+.video-item.expanded {
+  transform: scale(1.15);
+  z-index: 10;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.video-item.collapsed {
+  transform: scale(0.85);
+  filter: brightness(0.7);
+}
+
+.video-element {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-label {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.skeleton-loader {
+          padding: 20px;
+          max-width: 800px;
+          margin: 0 auto;
+        }
+        .skeleton-header {
+          height: 40px;
+          background: #eee;
+          margin-bottom: 20px;
+          border-radius: 4px;
+          animation: pulse 1.5s infinite;
+        }
+        .skeleton-content {
+          height: 200px;
+          background: #eee;
+          margin-bottom: 15px;
+          border-radius: 4px;
+          animation: pulse 1.5s infinite;
+        }
+        .skeleton-content-short {
+          height: 100px;
+          background: #eee;
+          margin-bottom: 20px;
+          border-radius: 4px;
+          animation: pulse 1.5s infinite;
+        }
+        .skeleton-footer {
+          height: 50px;
+          background: #eee;
+          border-radius: 4px;
+          animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.5; }
+        }
+
+.gradient-logo {
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(45deg, #e68843, #c0490c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-right: 2rem;
+}
+.header-nav {
+  display: flex;
+  gap: 3.5rem;
+}
+.header-nav a {
+  color: #a8a29e;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: color 0.3s ease-in-out; /* Smooth transition */
+}
+.header-nav a:hover {
+  color: #ea580c; /* New hover color */
+}
+.exampleEffectCorner{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 1rem;
+  border-radius: 10px;
+}
+.exampleEffectCorner i{
+color: orangered;
+}
+.imageAndTexts{
+  display: flex;
+  align-items: center;
+}
+.imageAndTexts img{
+  border-radius: 10px;
+  margin-right: 1rem;
+}
+.signup-button {
+  background-color: orangered;
+  color: white;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* 3. Sidebar and Content Styles */
+.app-content {
+  display: flex;
+  padding-top: 80px;
+}
+
+.sidebar {
+  width: 250px;
+  height: calc(100vh - 80px);
+  position: fixed;
+  background-color: #111;
+  border-right: 1px solid #333;
+  padding: 0 1rem;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.5rem;
+}
+
+.sidebar-link {
+  color: #a8a29e;
+  text-decoration: none;
+  padding: 0.70rem 0.90rem;
+  border-radius: 8px;
+  transition: all 0.35s cubic-bezier(0.16, 0.77, 0.39, 0.98);
+  display: block;
+  position: relative;
+  overflow: hidden;
+  font-weight: 500;
+    margin-top: 2px;
+
+}
+
+.sidebar-link:hover,
+.sidebar-link:focus {
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    0 2px 12px rgba(0, 0, 0, 0.2);
+  transform: translateX(4px);
+  color: #fff;
+}
+
+/* Optional animated underline effect */
+.sidebar-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #fff, transparent);
+  transition: width 0.4s ease;
+}
+
+.sidebar-link:hover::after {
+  width: 100%;
+}
+.main-content {
+  margin-left: 250px;
+  padding: 2rem;
+  width: calc(100% - 250px);
+}
+.proversion{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.protext article{
+background-color: orangered;
+padding: 0.1rem 0.70rem;
+border-radius: 7px;
+font-weight: 500;
+text-transform: uppercase;
+font-size: 14px;
+}
+/* Add this to your CSS file */
+.dashboard-header {
+  padding: 2rem;
+  background-color: #000; /* Match your dark background */
+}
+
+.header-content {
+  max-width: 350px;
+  margin-right: auto; /* Pushes content left */
+  margin-left: 0;
+  border: 0.5px solid rgba(211, 211, 211, 0.354); /* Thin light gray border with slight transparency */
+  display: flex;
+  align-items: center;
+  padding-left: 0;
+  justify-content: center;
+  padding: 0.25rem 1rem;
+  border-radius: 30px;
+  box-shadow: 0 0 1px rgba(211, 211, 211, 0.3); /* Optional: subtle glow to enhance visibility */
+}
+.main-title{
+  margin-right: 10px;
+  background-color: orangered;
+  padding: 0.1rem 0.7rem;
+  border-radius: 30px;
+  align-items: center;
+  font-size: 13px;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #a8a29e; /* Subdued gray color */
+  font-weight: 400;
   margin: 0;
 }
-
-a {
-  color: inherit;
-  text-decoration: none;
+.textHeader{
+  margin-top: 2rem;
+  font-size: 60;
+  font-weight: 700;
+}
+.textHeader span{
+  font-size: 60;
+    background: linear-gradient(45deg, #e68843, #c0490c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.subcar{
+ color: #a8a29e;
+ font-size: 18px;
+}
+.cartheader article{
+  font-size: 25px;
+  font-weight: 500;
+}
+.cards {
+  border: 1px solid rgba(211, 211, 211, 0.272);
+  padding: 1.5rem;
+  border-radius: 15px;
+  transition: all 0.3s ease; /* Smooth transition for all properties */
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+.cards:hover {
+  border: 1px solid #c0490c;
+  transform: scale(1.03); /* Slightly zoom in (3% larger) */
+}
+.sub-head{
+  margin-top: 1.5rem;
+}
+.gridCategorys{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+.gridCategorys a{
+  text-decoration: none;
+  color: white;
+}
+
+.footercontent h3{
+    font-size: 30;
+    background: linear-gradient(40deg, #e68843, #c0490c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.support{
+   background: linear-gradient(45deg, #e68843, #c0490c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.footercontent{
+  padding: 3rem;
+  display: grid;
+  grid-template-columns: 1.5fr 0.83fr 0.83fr 0.83fr;
+}
+.footercontent a{
+text-decoration: none;
+color: white;
+ transition: color 0.3s ease-in-out; /* Smooth transition */
+}
+.footercontent a:hover, .footercontent a:focus{
+color: #ea580c; /* New hover color */
+}
+
+.services h4, .resources h4, .legal h4{
+  margin-bottom: 1rem;
+}
+.services li, .resources li, .legal li{
+  list-style: none;
+  padding-top: 1rem;
+}
+.country{
+  margin-left: 3rem;
+  margin-right: 3rem;
+  border-top: 1px solid rgba(211, 211, 211, 0.226);
+}
+.countrylist {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Centers items */
+  gap: 1rem; /* Adds spacing */
+  list-style-position: inside; /* Bullets inside */
+  padding: 0;
+}
+
+.countrylist li {
+  padding: 0.1rem;
+   transition: color 0.3s ease-in-out; /* Smooth transition */
+}
+.countrylist li:hover, .countrylist li:focus {
+ color: #ea580c; /* New hover color */
+}
+.rightreserved{
+    margin: 3rem;
+  border-top: 1px solid rgba(211, 211, 211, 0.226);
+  text-align: center;
+}
+
+/* Grid Layout */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  padding: 2rem;
+}
+
+@media (max-width: 1024px) {
+  .video-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
+}
+
+@media (max-width: 640px) {
+  .video-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Video Cards */
+.video-card {
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #000;
+  position: relative;
+}
+
+.video-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Thumbnail & Video Elements */
+.thumbnail {
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+}
+
+.video-element {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+}
+
+.video-element.visible {
+  opacity: 1;
+}
+
+.video-element.hidden {
+  opacity: 0;
+}
+
+/* Loading Spinner */
+.spinner-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+/* CSS */
+.txtToVideo-container {
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+  gap: 2rem;
+  width: 100%;
+}
+
+.input-text-corner, .output-corner {
+  border: 1px solid rgba(211, 211, 211, 0.226); /* Red border for both */
+  padding: 1rem; /* Add some internal spacing */
+  border-radius: 20px;
+}
+.exampleClrBtn {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.exampleClrBtn button {
+  background: none;
+  border: 1px solid rgba(211, 211, 211, 0.226);
+  color: white;
+  padding: 0.35rem 0.9rem;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out; /* Changed to 'all' */
+  cursor: pointer; /* Better UX */
+}
+
+.exampleClrBtn button:hover,
+.exampleClrBtn button:focus {
+  color: white;
+  background-color: orangered;
+  border-color: orangered; /* Optional: if you want border to match */
+}
+
+.promtTxtarea{
+  margin-top: 3rem;
+}
+.promtTxtarea textarea {
+  width: 100%;
+  height: 8rem;
+  border: 1px solid rgba(211, 211, 211, 0.226);
+  background: none;
+  border-radius: 8px;
+  transition: border-color 0.3s ease; /* Smooth transition */
+  padding: 0.8rem;
+  color: white; /* Adjust as needed */
+  resize: vertical; /* Allows vertical resizing */
+}
+
+/* Focus state */
+.promtTxtarea textarea:focus {
+  border-color: orangered;
+  outline: none; /* Removes default browser outline */
+}
+
+/* Writing state (has content) */
+.promtTxtarea textarea.writing {
+  border-color: orangered;
+}
+.videoMakeMode {
+  margin: 1.5rem 0;
+}
+
+.videoMakeMode h5 {
+  margin-bottom: 0.8rem;
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+.modeRadioButton {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem; /* Increased gap for better spacing */
+}
+
+.radioOption {
+  display: flex;
+  align-items: center;
+  position: relative; /* Added for proper radio positioning */
+}
+
+/* Improved radio button styling */
+.radioOption input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #666;
+  border-radius: 50%;
+  margin: 0 10px 0 0; /* Adjusted margin */
+  cursor: pointer;
+  flex-shrink: 0; /* Prevents squishing */
+  position: relative;
+  top: -1px; /* Fine-tuned vertical alignment */
+}
+
+.radioOption input[type="radio"]:checked {
+  border-color: orangered;
+}
+
+.radioOption input[type="radio"]:checked::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: orangered;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.radioOption label {
+  display: flex;
+  flex-direction: column; /* Changed to column layout */
+  cursor: pointer;
+  color: white;
+  gap: 0.2rem; /* Space between label and credits */
+}
+
+.modeLabel {
+  font-weight: 500;
+  white-space: nowrap; /* Prevents text wrapping */
+}
+
+.modeCredits {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+}
+.generateVideoButton button{
+width: 100%;
+background-color: orangered;
+border: none;
+padding: 0.7rem 0;
+color: white;
+font-weight: 600;
+border-radius: 10px;
+}
+
+.modemakerHeading {
+  display: grid;
+  grid-template-columns: repeat(3, auto); /* Let content dictate width */
+  justify-content: space-evenly; /* Distribute space around items */
+  gap: 1rem; /* Optional gap between items */
+}
+/* Base styles for all mode items */
+.standrad, .highMode, .ultraMode {
+  border: 1px solid rgba(211, 211, 211, 0.32); /* Invisible border by default */
+  transition: border 0.3s ease; /* Smooth transition */
+  padding: 8px; /* Prevent layout shift on hover */
+  border-radius: 8px; /* Optional rounded corners */
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+/* Hide radio buttons */
+.mode-radio {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Add orangered border to the entire selected item */
+.mode-radio:checked + .icons + .modeText,
+.mode-radio:checked + .icons {
+  border-color: transparent; /* Remove inner borders if any */
+}
+
+.standrad:has(.mode-radio:checked),
+.highMode:has(.mode-radio:checked),
+.ultraMode:has(.mode-radio:checked) {
+  border: 1px solid orangered;
+}
+.icons {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  background-color: orangered;
+  display: flex; /* Add this */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  margin-right: 1rem;
+}
+
+/* Font Awesome icon specific adjustment */
+.icons i {
+  font-size: 1rem; /* Adjust icon size if needed */
+}
+
+.ratio-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.ratio1, .ratio2, .ratio3 {
+  border: 1px solid rgba(211, 211, 211, 0.32);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.ratioshow1, .ratioshow2, .ratioshow3 {
+  background-color: gray;
+  border-radius: 5px;
+  margin-bottom: 8px;
+}
+
+.ratioshow1 {
+  height: 20px;
+  width: 35px;
+}
+.ratioshow2 {
+  height: 20px;
+  width: 20px;
+}
+.ratioshow3 {
+  height: 35px;
+  width: 20px;
+}
+
+.ratioTxt article {
+  text-align: center;
+}
+
+/* Hide radio buttons */
+.ratio-radio {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Style for selected ratio container */
+.ratio1:has(.ratio-radio:checked),
+.ratio2:has(.ratio-radio:checked),
+.ratio3:has(.ratio-radio:checked) {
+  border: 1px solid orangered;
+}
+
+/* Fallback for older browsers */
+.ratio-radio:checked ~ .ratioshow1,
+.ratio-radio:checked ~ .ratioshow2,
+.ratio-radio:checked ~ .ratioshow3 {
+  outline: none;
+}
+
+.togglebtn {
+  display: flex;
+  justify-content: space-between; /* This pushes items to opposite sides */
+  align-items: center;
+  width: 100%;
+}
+
+.toggle {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  margin-left: auto; /* Pushes toggle group to right */
+}
+
+.toggle-switch {
+  display: inline-block;
+  background: #ccc;
+  border-radius: 12px;
+  width: 36px;  /* Even more compact */
+  height: 20px; /* Even more compact */
+  position: relative;
+  transition: background 0.2s;
+}
+
+.toggle-switch:before {
+  content: "";
+  display: block;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  transition: left 0.2s;
+}
+
+.toggle-checkbox:checked + .toggle-switch {
+  background: orangered;
+}
+
+.toggle-checkbox:checked + .toggle-switch:before {
+  left: 19px;
+}
+
+.toggle-label {
+  font-size: 14px;
+  margin-left: 8px; /* Space between label and toggle */
+  order: 1; /* Ensures label stays on left of toggle */
+}
+
+.toggle-checkbox {
+  position: absolute;
+  opacity: 0;
+}
+.creditnote{
+  font-size: 13px;
+  text-align: center;
+  margin-top: 1rem;
+}
+.saveHistory{
+  border: 1px solid rgba(211, 211, 211, 0.365);
+  border-radius: 10px;
+  margin-top: 3rem;
+}
+.saveHistory h5{
+ padding: 1rem;
+}
+.saveHistory article{
+ padding: 3rem;
+ text-align: center;
+}
+/* Global CSS */
+.video-player-container {
+  width: 100%;
+  height: 50vh; /* 30% of viewport height */
+  background-color: #000;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.video-player {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  background-color: #333;
+}
+.upload-container {
+  width: 100%;
+  height: 30vh;
+  margin: 0 auto;
+}
+
+.upload-area {
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(211, 211, 211, 0.26);
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: none;
+}
+
+.upload-area.dragging {
+  border-color: #4285f4;
+  background-color: rgba(66, 133, 244, 0.1);
+}
+
+.upload-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: #555;
+  padding: 20px;
+}
+
+.upload-content i {
+  font-size: 2rem;
+  color: #666;
+}
+
+.upload-content p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.file-input {
+  display: none;
+}
+
+.image-preview {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid lightgray;
+  border-radius: 8px;
+}
+
+.image-preview img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.remove-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+.remove-button:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.remove-button i {
+  font-size: 1rem;
+  color: white;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(0, 0, 0); /* This is for the overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  position: relative;
+  background-color: #000000; /* Solid black (non-transparent) */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  width: 60%;
+  max-width: 1200px;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 2rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+/* Rest of your styles remain unchanged */
+.modal-content::-webkit-scrollbar {
+  height: 6px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: rgba(255, 69, 0, 0.1);
+  border-radius: 3px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #ff4500, #ff8c00);
+  border-radius: 3px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background: #ff4500;
+}
+
+/* For Firefox */
+.modal-content {
+  scrollbar-width: thin;
+  scrollbar-color: #ff4500 rgba(255, 69, 0, 0.1);
+}
+
+.modal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.video-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.video-card:hover {
+  transform: scale(1.03);
+}
+
+.video-card video {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  cursor: pointer;
+  display: block;
+}
+
+.video-info {
+  padding: 0.8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.play-icon {
+  color: orangered;
+  font-size: 1rem;
+}
+
+.close-button {
+  position: fixed; /* Changed from absolute to fixed */
+  top: 1.5rem; /* Increased from 1rem */
+  right: 3rem; /* Increased from 1rem */
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  z-index: 1001; /* Higher than modal z-index */
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.close-button:hover {
+  background: rgba(255, 69, 0, 0.7); /* Orangered on hover */
+  transform: scale(1.1);
+}
+
+.upload-container {
+  position: relative;
+  width: 100%;
+}
+
+.upload-area {
+  border: 1px solid rgba(211, 211, 211, 0.26);
+  border-radius: 8px;
+  padding: 8px; /* Reduced padding */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  height: 200px; /* Fixed height */
+  width: 100%;
+}
+
+.upload-area.dragging {
+  border-color: #ff4500;
+  background-color: rgba(255, 69, 0, 0.05);
+}
+
+.upload-content {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.upload-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.images-preview {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  width: 100%;
+  height: 100%;
+}
+
+.image-preview-item {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+
+.image-preview-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-preview-item.empty-slot {
+  border: 1px dashed #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.03);
+}
+
+.empty-slot-content {
+  color: #ccc;
+  font-size: 1.5rem;
+}
+
+.remove-button {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: rgba(0, 0, 0, 0.7);
+  border: none;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 2;
+}
+
+.remove-button:hover {
+  background: #ff4500;
+  transform: scale(1.1);
+}
+
+.file-input {
+  display: none;
+}
+
+/* Hide the default radio buttons */
+.mode-radio {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Add orangered border to selected option */
+.mode-radio:checked ~ .icons,
+.mode-radio:checked ~ .modeText {
+  border: 1px solid orangered;
+}
+.main-home{
+  margin-top: 5rem;
+  padding: 2rem;
 }
