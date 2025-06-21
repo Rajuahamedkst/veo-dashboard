@@ -1,5 +1,14 @@
 import Link from "next/link";
 
+// layout.jsx
+import { Poppins } from "next/font/google";
+
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
 export const metadata = {
   title: "AI Video Studio",
   description: "Create amazing videos with AI",
@@ -7,10 +16,7 @@ export const metadata = {
 
 export default function DashboardLayout({ children }) {
   return (
-    <html lang="en">
-      <body className="pure-black-bg">
-        {/* Sidebar and main content */}
-        <div className="app-content">
+   <div className="app-content">
           <aside className="sidebar">
             <nav className="sidebar-nav">
               <Link href="/dashboard" className="sidebar-link">
@@ -49,9 +55,7 @@ export default function DashboardLayout({ children }) {
               </Link>
             </nav>
           </aside>
-          <main className="main-content">{children}</main>
+          <div className="main-content">{children}</div>
         </div>
-      </body>
-    </html>
   );
 }

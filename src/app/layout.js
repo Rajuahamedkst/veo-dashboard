@@ -37,9 +37,9 @@ export default function RootLayout({ children }) {
               </Link>
               
               <nav className="header-nav">
-                <a href="#">Showcase</a>
-                <a href="/pricing">Pricing</a>
-                <a href="/dashboard">Dashboard</a>
+                <Link href="#">Showcase</Link>
+                <Link href="/pricing">Pricing</Link>
+                <Link href="/dashboard">Dashboard</Link>
               </nav>
             </div>
             <div className="header-right">

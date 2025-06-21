@@ -6,6 +6,11 @@ export default function TextToImageInput() {
   const [value, setValue] = useState("");
   const [selectedMode, setSelectedMode] = useState("standard");
   const [hasError, setHasError] = useState(false);
+    const [selectedAspectRatio, setSelectedAspectRatio] = useState("16:9");
+    const [isGenerating, setIsGenerating] = useState(false);
+  const [videoUrl, setVideoUrl] = useState(null);
+    const [selectedDuration, setSelectedDuration] = useState("5s");
+
   const durations = [
     { id: "5s", label: "5 Seconds" },
     { id: "8s", label: "8 Seconds" },
@@ -27,13 +32,47 @@ const aspectratio = [
     setIsWriting(false);
   };
 
-  const clearAll = () => {
+   const clearAll = () => {
     setValue("");
     setIsWriting(false);
-    // Add your video clearing logic here later
-    // For example: setVideoUrl(null);
+    setVideoUrl(null);
   };
+const generateVideo = async () => {
+    if (!value || value.length < 10) {
+      alert("Prompt must be at least 10 characters");
+      return;
+    }
 
+    setIsGenerating(true);
+    setHasError(false);
+
+    try {
+      const response = await fetch('http://localhost:5000/api/v1/text-to-video', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          prompt: value,
+          duration: selectedDuration,
+          aspectRatio: selectedAspectRatio,
+          quality: selectedMode
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Video generation failed');
+      }
+
+      const data = await response.json();
+      setVideoUrl(data.videoUrl);
+    } catch (error) {
+      console.error('Error:', error);
+      setHasError(true);
+    } finally {
+      setIsGenerating(false);
+    }
+  };
   return (
     <>
           <div className="txtToVideo-container">
@@ -182,12 +221,61 @@ const aspectratio = [
 
         <hr />
       </div>
-      <div className="generateVideoButton">
-        <button>
-          <i className="fa-solid fa-wand-magic-sparkles me-2"></i>Generate Video
-          (1 Cradit)
-        </button>
-      </div>
+   <div className="generateVideoButton">
+            <button 
+              onClick={generateVideo}
+              disabled={isGenerating}
+            >
+              {isGenerating ? (
+                <>
+                  <i className="fa-solid fa-spinner fa-spin me-2"></i>
+                  Generating...
+                </>
+              ) : (
+                <>
+                  <i className="fa-solid fa-wand-magic-sparkles me-2"></i>
+                  Generate Video (1 Credit)
+                </>
+              )}
+            </button>
+          </div>
+          <article className="creditnote">
+            Note: 1 credit is required for each 5s video generation.
+          </article>
+        </div>
+        
+        <div className="output-corner">
+          <div className="app-container">
+            <div className="video-player-container">
+              {hasError ? (
+                <div className="video-placeholder">
+                  Failed to load video
+                </div>
+              ) : videoUrl ? (
+                <video
+                  controls
+                  className="video-player"
+                  onError={() => setHasError(true)}
+                  autoPlay
+                  loop
+                >
+                  <source src={videoUrl} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              ) : (
+                <div className="video-placeholder">
+                  {isGenerating ? (
+                    <div className="loading-spinner">
+                      <i className="fa-solid fa-spinner fa-spin"></i>
+                      <p>Generating your 3-second video...</p>
+                    </div>
+                  ) : (
+                    <p>Your generated video will appear here</p>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
       <article className="creditnote">
         Note: 1 credits are required for each 5s video generation.
       </article>
