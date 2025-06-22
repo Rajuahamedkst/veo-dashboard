@@ -23,7 +23,210 @@
   color: white;
   margin: 0;
 }
+.button1{
+  text-decoration: none;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  background-color: orangered;
+  border-radius: 10px;
+  font-weight: 600;
+  margin-right: 1rem;
+ 
+}
 
+.homeVideo {
+  padding: 10px;
+}
+
+.homevideo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+}
+
+.homevideo-container {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  aspect-ratio: 16/9;
+}
+
+.homevideo-element {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.3s ease;
+}
+
+/* Column-specific hover transformations */
+.homevideo-container.column-1.hovered {
+  transform: scale(1.1);
+  transform-origin: left center;
+}
+
+.homevideo-container.column-2.hovered {
+  transform: scale(1.1);
+  transform-origin: center center;
+}
+
+.homevideo-container.column-3.hovered {
+  transform: scale(1.1);
+  transform-origin: right center;
+}
+
+/* Diminished state for non-hovered videos */
+.homevideo-container.diminished {
+  transform: scale(0.9);
+  opacity: 0.8;
+  filter: brightness(0.7);
+}
+
+/* Adjacent video adjustments */
+.homevideo-container.column-1.hovered ~ .column-2,
+.homevideo-container.column-2.hovered ~ .column-3 {
+  transform-origin: left center;
+}
+
+.homevideo-container.column-3.hovered ~ .column-2,
+.homevideo-container.column-2.hovered ~ .column-1 {
+  transform-origin: right center;
+}
+
+/* Z-index management */
+.homevideo-container.hovered {
+  z-index: 2;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+/* Button Container */
+.homeButtons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+/* Base Button Styles */
+.button1, .button2 {
+  position: relative;
+  border: 2px solid currentColor;
+  border-radius: 2rem; /* Slightly smaller radius */
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300; /* Slightly bolder */
+  overflow: hidden;
+  padding: 0.6rem 1.5rem; /* Reduced padding */
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+  will-change: transform;
+  z-index: 0;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1rem; /* Smaller font size */
+  height: auto; /* Let content determine height */
+}
+
+/* Button 2 Specific */
+.button2, .button1 {
+  color: orangered;
+}
+
+/* Link Styles */
+.button1 a, .button2 a {
+  color: inherit;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: inherit; /* Match button font size */
+}
+
+/* Animated Background Layer */
+.button1::after, .button2::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit; /* Use parent's radius */
+  transform: translateX(-100%) rotate(10deg);
+  transform-origin: top left;
+  transition: transform 0.2s ease-out;
+  z-index: -1;
+}
+
+/* Button 1 Background */
+.button1::after {
+  background-color: orangered;
+}
+
+/* Button 2 Background */
+.button2::after {
+  background-color: orangered;
+}
+
+/* Hover Effects */
+.button1:hover, .button2:hover {
+  transform: scale(1.05);
+  border-color: transparent;
+}
+
+.button1:hover {
+  color: white;
+}
+
+.button2:hover {
+  color: white;
+}
+
+.button1:hover::after, .button2:hover::after {
+  transform: translateX(0) rotate(0);
+}
+
+/* Arrow Icon Animation */
+.button1 .fa-arrow-right {
+  transition: transform 0.3s ease;
+  font-size: 0.9rem; /* Slightly smaller icon */
+}
+
+.button1:hover .fa-arrow-right {
+  transform: translateX(4px); /* Slightly less movement */
+}
+
+/* ShowCase Section */
+.showcaseTxt {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.showcaseTxt h6{
+  color: orangered;
+}
+
+/* Add to your global CSS */
+.showcasePost .card {
+  border-radius: 12px;
+  transition: transform 0.2s;
+  border: 1px solid #e0e0e0;
+}
+
+.showcasePost .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.showcasePost .text-muted {
+  color: #6c757d !important;
+}
+
+.showcasePost .fa-heart:hover {
+  color: #ff0000 !important;
+}
+
+.showcasePost .fa-retweet:hover {
+  color: #1da1f2 !important;
+}
 /* Regular footer styles */
 .footer-content {
   border: 1px solid rgba(211, 211, 211, 0.226);
