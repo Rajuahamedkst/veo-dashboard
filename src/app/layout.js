@@ -1,13 +1,15 @@
 // app/layout.jsx
-import { Poppins } from "next/font/google";
+import { Nunito } from "next/font/google"; // Import Nunito
 import "./globals.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'animate.css';
 import Link from "next/link";
 
-const poppins = Poppins({
+// Configure Nunito with the weights you need
+const nunito = Nunito({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700"], // Adjust weights as needed
+  display: "swap", // Optional: Ensures text remains visible during font load
 });
 
 export const metadata = {
@@ -17,7 +19,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={poppins.className}>
+    <html lang="en" className={nunito.className}>
         <head>
       <link
         rel="stylesheet"
